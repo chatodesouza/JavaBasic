@@ -9,6 +9,9 @@ public class IlkSinif {
 	
 	public static void main(String[] args) {
 		IlkSinif i = new IlkSinif();
+		System.out.println(i);
+		IlkSinif i2 = i;
+		System.out.println(i2);
 		i.ekranaYaz(args[0], args[1]);
 		
 		HesapMakinesi.topla(15, 20);
