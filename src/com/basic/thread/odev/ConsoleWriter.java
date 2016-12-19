@@ -4,10 +4,9 @@ import java.util.Scanner;
 
 public class ConsoleWriter {
 	private String lineSeperator = "  --- /// --- ... --- /// ---  GREENY SHOP  --- /// --- ... --- /// ---  ";
-	private static Integer bucketCapacity;
 	private static Scanner input = new Scanner(System.in);
 	private static Integer prodSelect;
-	private static String[] prodType = { "Apple", "Banana", "Cherry", "Watermelon" };
+
 	Product product;
 
 	public ConsoleWriter() {
@@ -17,16 +16,14 @@ public class ConsoleWriter {
 		this.bucketCapacity(-1);
 	}
 
-	public int bucketCapacity(int a) {
+	public int bucketCapacity(int capacity) {
 		try {
-			if (a == -1) {
+			if (capacity == -1) {
 				System.out.println(" Tell us our bucket capacity:");
 				this.bucketCapacity(input.nextInt());
 			} else {
-				if (a >= 0 && a <= 1000) {
-					bucketCapacity = a;
-					//product = new Product(bucketCapacity);
-					// TODO: sorulacak
+				if (capacity >= 0 && capacity <= 1000) {
+					product = new Product(capacity);
 					this.firstMenuWriter();
 					prodSelect = input.nextInt();
 					this.firstMenuSwitch(prodSelect);
@@ -48,33 +45,33 @@ public class ConsoleWriter {
 
 	}
 
-	public void firstMenuWriter() {
+	private void firstMenuWriter() {
 		System.out.println(lineSeperator);
 		System.out.println("  Tell us what you want to buy as products listed below:");
 		System.out.println("(Press the product number matched with the required product)");
-		System.out.println("1- " + prodType[0]);
-		System.out.println("2- " + prodType[1]);
-		System.out.println("3- " + prodType[2]);
-		System.out.println("4- " + prodType[3]);
+		System.out.println("1- " + product.prodType[0]);
+		System.out.println("2- " + product.prodType[1]);
+		System.out.println("3- " + product.prodType[2]);
+		System.out.println("4- " + product.prodType[3]);
 		System.out.println("\n0- QUIT");
 	}
 
-	public int firstMenuSwitch(int a) {
+	private int firstMenuSwitch(int a) {
 		switch (prodSelect) {
 		case 0:
 			System.out.println("GOOD BYE, THEN...");
 			System.exit(0);
 		case 1:
-			this.numberOfPurchasedProduct(new Apple(), prodType[0]);
+			this.numberOfPurchasedProduct(new Apple(), product.prodType[0]);
 			break;
 		case 2:
-			this.numberOfPurchasedProduct(new Banana(), prodType[1]);
+			this.numberOfPurchasedProduct(new Banana(), product.prodType[1]);
 			break;
 		case 3:
-			this.numberOfPurchasedProduct(new Cherry(), prodType[2]);
+			this.numberOfPurchasedProduct(new Cherry(), product.prodType[2]);
 			break;
 		case 4:
-			this.numberOfPurchasedProduct(new Watermelon(), prodType[3]);
+			this.numberOfPurchasedProduct(new Watermelon(), product.prodType[3]);
 			break;
 		default:
 			System.out.println("We have no other products. Please, try to purchase listed products.\n---");
@@ -89,12 +86,17 @@ public class ConsoleWriter {
 		productionTypePurchased.toLowerCase();
 		if (productionTypePurchased.endsWith("y")) {
 			int lastY = productionTypePurchased.lastIndexOf("y");
-			productionTypePurchased = productionTypePurchased.substring(0, lastY) + "ies";
+			productionTypePurchased = productionTypePurchased.substring(0, lastY).toLowerCase() + "ies";
 			System.out.println("How many " + productionTypePurchased + " do you want?");
 		} else {
-			System.out.println("How many " + productionTypePurchased + "s do you want?");
+			System.out.println("How many " + productionTypePurchased.toLowerCase() + "s do you want?");
 		}
-		
+
+		if (a.buyProduct(input.nextInt()) == false) {
+			this.firstMenuWriter();
+			prodSelect = input.nextInt();
+			this.firstMenuSwitch(prodSelect);
+		}
 
 	}
 

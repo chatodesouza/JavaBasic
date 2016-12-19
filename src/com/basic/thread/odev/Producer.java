@@ -1,19 +1,28 @@
 package com.basic.thread.odev;
 
-public class Producer extends Thread {
-	private int baslangic;
-	private int bitis;
-	
-	public Producer(int baslangic, int bitis) {
-		this.baslangic = baslangic;
-		this.bitis = bitis;
-	}
-	
+import java.util.TimerTask;
+
+public class Producer extends TimerTask {
+	Apple apple = new Apple("Apple");
+	Banana banana = new Banana("Banana");
+	Cherry cherry = new Cherry("Cherry");
+	Watermelon watermelon = new Watermelon("Watermelon");
+
 	@Override
 	public void run() {
-		for (int i = baslangic; i < bitis; i++) {
-			System.out.println(i);
+		if(apple.getNumberOfApples()!=watermelon.numberOfItemsForEachProduct&&apple.getNumberOfApples()!=null){
+			apple.fillInApples();
 		}
-}
+		if(banana.getNumberOfBananas()!=watermelon.numberOfItemsForEachProduct&&apple.getNumberOfApples()!=null){
+			banana.fillInBananas();
+		}
+		if(cherry.getNumberOfCherries()!=watermelon.numberOfItemsForEachProduct&&apple.getNumberOfApples()!=null){
+			cherry.fillInCherries();
+		}
+		if(watermelon.getNumberOfWatermelons()!=watermelon.numberOfItemsForEachProduct&&apple.getNumberOfApples()!=null){
+			watermelon.fillInWatermelons();
+		}
+	}
+	
 
 }
