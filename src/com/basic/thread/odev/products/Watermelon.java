@@ -1,10 +1,10 @@
-package com.basic.thread.odev;
+package com.basic.thread.odev.products;
 
 public class Watermelon extends Product{
 	private Integer numberOfWatermelons;
 	
 	public void fillInWatermelons() {
-		this.numberOfWatermelons = super.numberOfItemsForEachProduct;
+		this.numberOfWatermelons = super.getNumberOfItemsForEachProduct();
 	}
 
 	public synchronized Integer getNumberOfWatermelons() {
@@ -13,7 +13,7 @@ public class Watermelon extends Product{
 	
 	public Watermelon(){
 		if(numberOfWatermelons==null){
-		this.numberOfWatermelons = super.numberOfItemsForEachProduct;
+		this.numberOfWatermelons = super.getNumberOfItemsForEachProduct();
 		}
 	}
 	
@@ -23,13 +23,13 @@ public class Watermelon extends Product{
 
 	@Override
 	public boolean buyProduct(int boughtItemNumber) {
-		if(numberOfWatermelons!=super.numberOfItemsForEachProduct && numberOfWatermelons!=null){
+		if(numberOfWatermelons!=super.getNumberOfItemsForEachProduct() && numberOfWatermelons!=null){
 			this.numberOfWatermelons=numberOfWatermelons-boughtItemNumber;
 			System.out.println("You have succesfully bought products");
 			return true;
 			
 		}
-		else if(numberOfWatermelons<super.numberOfItemsForEachProduct){
+		else if(numberOfWatermelons<super.getNumberOfItemsForEachProduct()){
 			System.out.println("We're so sorry...\nNo more " + super.prodType[3] + " left. Try again later...");
 			return false;
 		}

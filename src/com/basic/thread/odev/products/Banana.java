@@ -1,10 +1,10 @@
-package com.basic.thread.odev;
+package com.basic.thread.odev.products;
 
 public class Banana extends Product{
 	private Integer numberOfBananas;
 	
 	public void fillInBananas() {
-		this.numberOfBananas = super.numberOfItemsForEachProduct;
+		this.numberOfBananas = super.getNumberOfItemsForEachProduct();
 	}
 
 	public synchronized Integer getNumberOfBananas() {
@@ -14,7 +14,7 @@ public class Banana extends Product{
 	
 	public Banana(){
 		if(numberOfBananas==null){
-		this.numberOfBananas = super.numberOfItemsForEachProduct;
+		this.numberOfBananas = super.getNumberOfItemsForEachProduct();
 		}
 	}
 	public Banana(String a){
@@ -23,13 +23,13 @@ public class Banana extends Product{
 
 	@Override
 	public boolean buyProduct(int boughtItemNumber) {
-		if(numberOfBananas!=super.numberOfItemsForEachProduct && numberOfBananas!=null){
+		if(numberOfBananas!=super.getNumberOfItemsForEachProduct() && numberOfBananas!=null){
 			this.numberOfBananas=numberOfBananas-boughtItemNumber;
 			System.out.println("You have succesfully bought products");
 			return true;
 			
 		}
-		else if(numberOfBananas<super.numberOfItemsForEachProduct){
+		else if(numberOfBananas<super.getNumberOfItemsForEachProduct()){
 			System.out.println("We're so sorry...\nNo more " + super.prodType[1] + " left. Try again later...");
 			return false;
 		}

@@ -1,10 +1,10 @@
-package com.basic.thread.odev;
+package com.basic.thread.odev.products;
 
 public class Cherry extends Product{
 	private Integer numberOfCherries;
 	
 	public void fillInCherries() {
-		this.numberOfCherries = super.numberOfItemsForEachProduct;
+		this.numberOfCherries = super.getNumberOfItemsForEachProduct();
 	}
 
 	public synchronized Integer getNumberOfCherries() {
@@ -14,7 +14,7 @@ public class Cherry extends Product{
 	
 	public Cherry(){
 		if(numberOfCherries==null){
-		this.numberOfCherries = super.numberOfItemsForEachProduct;
+		this.numberOfCherries = super.getNumberOfItemsForEachProduct();
 		}
 	}
 	
@@ -24,12 +24,12 @@ public class Cherry extends Product{
 
 	@Override
 	public boolean buyProduct(int boughtItemNumber) {
-		if(numberOfCherries!=super.numberOfItemsForEachProduct && numberOfCherries!=null){
+		if(numberOfCherries!=super.getNumberOfItemsForEachProduct() && numberOfCherries!=null){
 			this.numberOfCherries=numberOfCherries-boughtItemNumber;
 			System.out.println("You have succesfully bought products");
 			return true;
 		}
-		else if(numberOfCherries<super.numberOfItemsForEachProduct){
+		else if(numberOfCherries<super.getNumberOfItemsForEachProduct()){
 			System.out.println("We're so sorry...\nNo more " + super.prodType[2] + " left. Try again later...");
 			return false;
 		}

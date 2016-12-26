@@ -1,9 +1,11 @@
-package com.basic.thread.odev;
+package com.basic.thread.odev.products;
 
 public class Product{
-	public Integer numberOfItems;
+	//public Integer numberOfItems;
+	public static Integer numberOfItems;
 	public final String[] prodType = { "Apple", "Banana", "Cherry", "Watermelon" };
-	protected int numberOfItemsForEachProduct;
+	//private int numberOfItemsForEachProduct;
+	private static int numberOfItemsForEachProduct;
 
 	public Product() {
 
@@ -13,9 +15,17 @@ public class Product{
 		if (numberOfItems == null) {
 			this.setNumberOfItems(a);
 			System.out.println("OK. Your bucket size is " + a + "\n");
-			this.numberOfItemsForEachProduct = numberOfItems/prodType.length;
+			this.setNumberOfItemsForEachProduct(numberOfItems/prodType.length);
 			
 		}
+	}
+
+	public int getNumberOfItemsForEachProduct() {
+		return numberOfItemsForEachProduct;
+	}
+
+	public void setNumberOfItemsForEachProduct(int numberOfItemsForEachProduct) {
+		this.numberOfItemsForEachProduct = numberOfItemsForEachProduct;
 	}
 
 	private void setNumberOfItems(int numberOfItems) {

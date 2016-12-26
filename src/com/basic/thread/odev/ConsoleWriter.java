@@ -2,6 +2,12 @@ package com.basic.thread.odev;
 
 import java.util.Scanner;
 
+import com.basic.thread.odev.products.Apple;
+import com.basic.thread.odev.products.Banana;
+import com.basic.thread.odev.products.Cherry;
+import com.basic.thread.odev.products.Product;
+import com.basic.thread.odev.products.Watermelon;
+
 public class ConsoleWriter {
 	private String lineSeperator = "  --- /// --- ... --- /// ---  GREENY SHOP  --- /// --- ... --- /// ---  ";
 	private static Scanner input = new Scanner(System.in);
@@ -30,8 +36,7 @@ public class ConsoleWriter {
 
 				} else {
 					System.out.println(lineSeperator);
-					System.out
-							.println("---(HINT: Capacity should be:\n1- Between 0 and 1000\n2- An integer number)---");
+					System.out.println("---(HINT: Capacity should be:\n1- Between 0 and 1000\n2- An integer number)---");
 					System.out.println(" Re-tell us our bucket capacity:");
 					return bucketCapacity(input.nextInt());
 				}
