@@ -38,7 +38,12 @@ public class HtmlMainReader {
 	}
 	
 	public void connectionHtml() throws IOException{
-		url = new URL(targetUrl + subLinks.get(htmlFileNumber));
+		if (strHtml.contains(subLinkHtml)){
+			url = new URL(targetUrl+ subLinks.get(htmlFileNumber));
+		}
+		else {
+			url = new URL(targetUrl);
+		}
 		URLConnection uc = url.openConnection();
 		isr = new InputStreamReader(uc.getInputStream(), encodingFormat);
 		this.title = uc.getContentEncoding();
@@ -85,8 +90,7 @@ public class HtmlMainReader {
 		nextChar = (strHtml.indexOf(subLinkHtml))+7;
 		System.out.println(nextChar);
 		subLinks.add(strHtml.substring(nextChar, strHtml.indexOf("\"")));
-		System.out.println();
-		subLinks.add(this.targetUrl + subLinks.get(htmlFileNumber));
+		subLinks.add(this.targetUrl /*+ subLinks.get(htmlFileNumber)*/);
 		}
 
 	}
