@@ -67,64 +67,31 @@ public class FileApp implements FilenameFilter {
 
 		fileOrFolderName = input.next();
 
-		// fileApp.finder(fileApp.file);
-
-		fileApp.finder(fileApp.file, fileApp.file.getAbsolutePath());
-
-		/*
-		 * //Writing folder list System.out.println("Folders:\n"); for(int i =
-		 * 0; i<folderList.size(); i++){ System.out.println("- " +
-		 * folderList.get(i) + "\n"); } //Writing file list
-		 * System.out.println("Files:\n"); for(int i = 0; i<fileList.size();
-		 * i++){ System.out.println("- " + fileList.get(i) + "\n"); }
-		 */
-
-		/*
-		 * if (file.exists()) { fileApp.finder(); }
-		 */
-		// file.getName();
-
-		// System.out.println(countFile + " " + file.getName());
+		fileApp.finder(fileApp.file);
 
 	}
 
-	private void finder(File dir, String dirName) {
-
+	private void finder(File dir) {
+		//System.out.println("DIR: " + dir + "\n");
+		if(dir.listFiles()!=null){
 		for (int i = 0; i < dir.listFiles().length; i++) {
-			if (dir.listFiles()[i].isDirectory()) {
-				if (dir.listFiles()[i].getName().toString().contains(fileOrFolderName)) {
+			File f = dir.listFiles()[i];
+			if (f.isDirectory()&&!f.isHidden()) {
+				if (f.getName().toString().contains(fileOrFolderName)) {
 					System.out.println(dir.listFiles()[i]);
 				}
-					// this.folderList.add(dir.listFiles()[i].getAbsolutePath().toString());
-				finder(dir.listFiles()[i], dir.listFiles()[i].getAbsolutePath());
+					// this.folderList.add(f.getAbsolutePath().toString());
+				finder(f);
 					
-				} else if (dir.listFiles()[i].isFile()) {
-					// this.fileList.add(dir.listFiles()[i].getAbsolutePath().toString());
-					if (dir.listFiles()[i].getName().toString().contains(fileOrFolderName)) {
-						System.out.println(dir.listFiles()[i]);
+				} else if (f.isFile()) {
+					// this.fileList.add(f.getAbsolutePath().toString());
+					if (f.getName().toString().contains(fileOrFolderName)) {
+						System.out.println(f);
 					}
 				}
 			}
 
 		}
-
-
-	private void finder(File dir) {
-
-		for (int i = 0; i < dir.listFiles().length; i++) {
-			if (dir.listFiles()[i].toString().contains(fileOrFolderName)) {
-				System.out.println(dir.listFiles()[i]);
-				if (dir.listFiles()[i].isDirectory()) {
-					// this.folderList.add(dir.listFiles()[i].getAbsolutePath().toString());
-					finder(dir.listFiles()[i]);
-				} else if (dir.listFiles()[i].isFile()) {
-					// this.fileList.add(dir.listFiles()[i].getAbsolutePath().toString());
-					System.out.println(dir.listFiles()[i]);
-				}
-			}
-
-		}
-
 	}
 
 	@Override
