@@ -18,7 +18,7 @@ public class TargetFileWriter {
 	private File fNew;
 	private FileOutputStream fos;
 	private BufferedOutputStream bos;
-	private OutputStreamWriter osw;
+	//private OutputStreamWriter osw;
 
 	public TargetFileWriter(String fileSeparator, String tFOP, String tFNP, ArrayList<Character> content,
 			String encodingFormat) throws IOException {
@@ -54,21 +54,21 @@ public class TargetFileWriter {
 			fNew = new File(this.targetFileNewPath);
 			fos = new FileOutputStream(fNew);
 			bos = new BufferedOutputStream(fos);
-			osw = new OutputStreamWriter(bos, encodingFormat);
+			//osw = new OutputStreamWriter(bos, encodingFormat);
 			for (int i = 0; i < content.size(); i++) {
-				osw.write(content.get(i));
+				bos.write(content.get(i));
 			}
 		} else {
 			fNew.createNewFile();
 			fos = new FileOutputStream(fNew);
 			bos = new BufferedOutputStream(fos);
-			osw = new OutputStreamWriter(bos, encodingFormat);
+			//osw = new OutputStreamWriter(bos, encodingFormat);
 			for (int i = 0; i < content.size(); i++) {
-				osw.write(content.get(i));
+				bos.write(content.get(i));
 			}
 		}
 
-		osw.flush();
+		bos.flush();
 	}
 
 }

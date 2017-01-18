@@ -69,12 +69,12 @@ public class FileCopier {
 	
 	private void oldFileConsole(){
 		System.out.println("Please write your file path:\n");
-		this.tfOldPath = input.next();
+		this.tfOldPath = input.nextLine();
 	}
 	
 	private void newFileConsole(){
 		System.out.println("Please write your copying position path:\n");
-		this.tfNewPath = input.next();
+		this.tfNewPath = input.nextLine();
 	}
 
 }

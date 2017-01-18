@@ -16,9 +16,8 @@ public class TargetFileReader {
 	private File f;
 	private FileInputStream fis;
 	private BufferedInputStream bis;
-	private InputStreamReader isr;
-
 	// private InputStreamReader isr;
+	
 	private static String targetFileOldPath;
 	private final static String ENCODING_FORMAT = "ISO-8859-9";
 
@@ -43,7 +42,7 @@ public class TargetFileReader {
 		f = new File(targetFileOldPath);
 		fis = new FileInputStream(f);
 		bis = new BufferedInputStream(fis);
-		isr = new InputStreamReader(bis, ENCODING_FORMAT);
+		//isr = new InputStreamReader(bis, ENCODING_FORMAT);
 		//---> Ýçindeki veriler ile iþim
 		// yoksa InputStreamReader oluþturmama gerek yok.
 
@@ -55,7 +54,7 @@ public class TargetFileReader {
 			System.out.print(content.get(j));
 		}*/
 		
-		isr.close();
+		bis.close();
 
 	}
 
